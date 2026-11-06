@@ -42,7 +42,11 @@ r-archr = { version = ">=1.0.3,<2", channel = "bioconda" }
 
 # GATAC feature (default env): heavy Python/R pipeline tools.
 [feature.gatac.pypi-dependencies]
-gatac = { path = "..", editable = true, extras = ["cuda12"] }
+# The released GATAC, so the repository works on its own. To test a GATAC
+# checkout instead (e.g. the one this is a submodule of), prefix the commands
+# with PYTHONPATH=..  (see README). Not a path dependency: pixi resolves every
+# environment, so a path outside the repository would break standalone clones.
+gatac = { version = ">=0.1.0", extras = ["rapids-cu12"] }
 snapatac2 = { git = "https://github.com/scverse/SnapATAC2" }
 jupyterlab = ">=4.5.3, <5"
 ipywidgets = ">=8.1.8, <9"

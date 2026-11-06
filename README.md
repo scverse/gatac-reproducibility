@@ -56,19 +56,27 @@ same clusters, GATAC selects exactly ArchR's features, but ArchR's clusters chan
 seed and thread count, and the feature selection is very sensitive to them. Across 12 ArchR
 runs, GATAC vs ArchR (Jaccard 0.29–0.85) falls within ArchR vs ArchR (0.37–0.93).
 
-## Setup as a Submodule (within gatac repo)
-
-Working within the main `gatac` repository:
+## Setup
 
 ```bash
-cd reproducibility
 pixi install --all
 # or, to also fetch the AMULET v1.1 scripts (only needed for the
 # amulet_doublet test):
 pixi run install-all
 ```
 
-The `pixi.toml` automatically references the GATAC installation at the parent directory level.
+The default environment installs the released GATAC from PyPI
+(`gatac[rapids-cu12]`), so this repository works on its own.
+
+To test a GATAC checkout instead, e.g. from within the `gatac` repository,
+where this repository is the `reproducibility` submodule, put the checkout
+first on `PYTHONPATH`:
+
+```bash
+cd reproducibility
+PYTHONPATH=.. pixi run python test/tile_matrix.py
+PYTHONPATH=.. pixi run pytest test/tile_matrix.py
+```
 
 The workspace has three pixi environments:
 

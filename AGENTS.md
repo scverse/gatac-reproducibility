@@ -4,6 +4,13 @@ use pixi to run code and manage environment. always run test from the base direc
 pixi run python test/{name_of_test}.py
 ```
 
+The pixi env has the released GATAC from PyPI. To test the GATAC checkout this
+repository is a submodule of (`..`), prefix the command with `PYTHONPATH=..`:
+
+```bash
+PYTHONPATH=.. pixi run python test/{name_of_test}.py
+```
+
 ## Pixi environments
 
 The workspace has two pixi environments:
